@@ -12,7 +12,7 @@ public class Stack {
         if (size == array.length){
             extend();
         }else {
-            array[size++] = value;
+            array[++size] = value;
         }
     }
 

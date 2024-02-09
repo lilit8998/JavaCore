@@ -10,33 +10,45 @@ public class BraceChecker {
     public void check() {
         Stack stack = new Stack();
         char symbols;
+        int openBraceCount = 0;
+        int closedBraceCount = 0;
         for (int i = 0; i < text.length(); i++){
             char arrayChar = text.charAt(i);
-
-            switch (arrayChar){
-                case '(':
-                case '{':
-                case '[':
-                    stack.push(arrayChar);
-                    break;
-                case ')':
-                    symbols = (char) stack.pop();
-                    if (symbols == '{' || symbols == '['){
-                        System.out.println("Error: open " + symbols + " but closed " + arrayChar  + " at " + i);
-                    }
-                    break;
-                case '}':
-                    symbols = (char) stack.pop();
-                    if (symbols == '(' || symbols == '['){
-                        System.out.println("Error: open " + symbols + " but closed " + arrayChar + " at " + i);
+                switch (arrayChar){
+                    case '(':
+                    case '{':
+                    case '[':
+                        stack.push(arrayChar);
+                        openBraceCount++;
                         break;
-                    }
-                case ']':
-                    symbols = (char) stack.pop();
-                    if (symbols == '(' || symbols == '{'){
-                        System.out.println("Error: open " + symbols + " but closed " + arrayChar + " at " + i);
-                    }
-             }
+                    case ')':
+                        symbols = (char) stack.pop();
+                        if (symbols == '{' || symbols == '['){
+                            System.out.println("Error: open " + symbols + " but closed " + arrayChar  + " at " + i);
+                        }
+                        closedBraceCount++;
+                        break;
+                    case '}':
+                        symbols = (char) stack.pop();
+                        if (symbols == '(' || symbols == '['){
+                            System.out.println("Error: open " + symbols + " but closed " + arrayChar + " at " + i);
+                        }
+                        closedBraceCount++;
+                        break;
+                    case ']':
+                        symbols = (char) stack.pop();
+                        if (symbols == '(' || symbols == '{'){
+                            System.out.println("Error: open " + symbols + " but closed " + arrayChar + " at " + i);
+                        }
+                        closedBraceCount++;
+                        break;
+                }
+
+            }
+        if (openBraceCount != closedBraceCount){
+            System.out.println("Error: opened and closed brace count doesn't much");
         }
-    }
+
+        }
+
 }
