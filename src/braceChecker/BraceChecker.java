@@ -23,6 +23,9 @@ public class BraceChecker {
                         break;
                     case ')':
                         symbols = (char) stack.pop();
+                        if (symbols == 0){
+                            System.out.println("Error: " + symbols + " closed, but not opened at " + i);
+                        }
                         if (symbols == '{' || symbols == '['){
                             System.out.println("Error: open " + symbols + " but closed " + arrayChar  + " at " + i);
                         }
@@ -30,6 +33,9 @@ public class BraceChecker {
                         break;
                     case '}':
                         symbols = (char) stack.pop();
+                        if (symbols == 0){
+                            System.out.println("Error: " + symbols + " closed, but not opened at " + i);
+                        }
                         if (symbols == '(' || symbols == '['){
                             System.out.println("Error: open " + symbols + " but closed " + arrayChar + " at " + i);
                         }
@@ -37,6 +43,9 @@ public class BraceChecker {
                         break;
                     case ']':
                         symbols = (char) stack.pop();
+                        if (symbols == 0){
+                            System.out.println("Error: " + symbols + " closed, but not opened at " + i);
+                        }
                         if (symbols == '(' || symbols == '{'){
                             System.out.println("Error: open " + symbols + " but closed " + arrayChar + " at " + i);
                         }
@@ -45,9 +54,10 @@ public class BraceChecker {
                 }
 
             }
-        if (openBraceCount != closedBraceCount){
-            System.out.println("Error: opened and closed brace count doesn't much");
-        }
+                while (stack.getIndex() != -1){
+                    System.out.println("Error open" + (char) stack.pop() + " but not closed ");
+                }
+
 
         }
 

@@ -25,6 +25,9 @@ public class Stack {
         }
     }
 
+    public int getIndex(){
+        return size;
+    }
     private void extend() {
         if (size == array.length){
             int[] tmp = new int[array.length + 10];
